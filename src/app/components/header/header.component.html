@@ -1,0 +1,38 @@
+<!--Sticky header allows the navigation bar to be always visible.-->
+<header mdbStickyHeader>
+  <!--  Sets the colour of the navigation bar to green. Additional class definiton '[containerInside]' to fit
+  the layout.-->
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark green lighten-1" [containerInside]="false">
+    <mdb-navbar-brand><a class="navbar-brand" href="#">
+      <!--      Displays the logo in the navigation bar.-->
+      <input type="image" name="<Logo>" src="../../../assets/logo/logo.png" routerLink="/home"
+             style="width:250px;height:40px;" alt="JAMBOREE">
+    </a></mdb-navbar-brand>
+    <links>
+      <!--      Links to the corresponding Angular routes-->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link waves-light" mdbWavesEffect routerLink="/home">Home</a></li>
+        <li class="nav-item"><a class="nav-link waves-light" mdbWavesEffect routerLink="/shophome">Shop</a></li>
+        <li class="nav-item"><a class="nav-link waves-light" mdbWavesEffect routerLink="/products">Products</a></li>
+        <li class="nav-item"><a class="nav-link waves-light" mdbWavesEffect routerLink="/contactus">Contact Us</a></li>
+      </ul>
+      <!--      Setting up the provisions for the user account and notification functionality for future. -->
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item"><a class="nav-link">
+          <mdb-icon fas icon="envelope"></mdb-icon>
+        </a></li>
+        <li class="nav-item avatar dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt=""
+                 class="img-fluid rounded-circle z-depth-0"></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+          </div>
+        </li>
+      </ul>
+    </links>
+  </mdb-navbar>
+</header>
+
+

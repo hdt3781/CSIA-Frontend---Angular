@@ -1,0 +1,45 @@
+<aside>
+  <header>
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark green lighten-1" [containerInside]="false">
+      <mdb-navbar-brand>
+        <h1>
+        </h1>
+      </mdb-navbar-brand>
+      <links>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+                  <li class="nav-item"><a class="nav-link" style="padding-top: 1.5em">Your Cart</a></li>
+          <li class="nav-item">
+            <a *ngIf="cartCount > 0" class="nav-link waves-light " style="padding-top: 1.5em" (click)="getCartItems()" mdbWavesEffect routerLink="/cart">
+              <i class="fas fa-shopping-cart" style="padding-right: 0.5em; font-weight: bold"></i>{{cartCount}}</a>
+          </li>
+        </ul>
+      </links>
+    </mdb-navbar>
+  </header>
+  <div *ngIf="cartCount > 0">
+    <hr />
+    <div class="row">
+      <div class="col-5 product-name" style="font-weight: bold ; text-align: center"> Name</div>
+      <span class="col-2 product-price" style="font-weight: bold; text-align: right">Price </span>
+      <span class="col-2 product-qty" style="font-weight: bold; text-align: right">Quantity</span>
+      <span class="col-2 product-charge" style="font-weight: bold; text-align: right">Cost</span>
+    </div>
+<hr />
+    <div *ngFor="let cartItem of cartItems.cart ; let i = index">
+    <div class="row">
+      <div class="col-5 product-name"> {{i+1}}. {{cartItem.product_name | titlecase}} </div>
+      <span class="col-2 product-price" style="text-align: right">{{cartItem.price | number: '1.2-2'}} </span>
+      <i class="fas fa-minus-square" (click)="updateCart(cartItem, -1)" style="width: 12px; color: red"></i>
+      <span class="col-2 product-qty" style="text-align: right">{{cartItem.qty}}x </span>
+      <i class="fas fa-plus-square" (click)="updateCart(cartItem, 1)" style="width: 12px; color: green"></i>
+          <span class="col-2 product-charge" style="text-align: right">{{cartItem.qty * cartItem.price| number: '1.2-2'}}</span>
+    </div>
+  </div>
+    <hr />
+    <div class="row">
+      <div class="col-9" style="text-align: right; font-weight: bold">Totals</div>
+      <div class="col-2 cart-total-cost"> {{cartItems.cartTotals.cost |  number: '1.2-2'}}</div>
+    </div>
+    <hr />
+  </div>
+</aside>

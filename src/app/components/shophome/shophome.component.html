@@ -1,0 +1,51 @@
+<div class="plainbg font topspace">
+  <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+    <mdb-carousel-item><img class="d-block w-100" src="./assets/img/slide1.png" alt="First slide"></mdb-carousel-item>
+    <mdb-carousel-item><img class="d-block w-100" src="./assets/img/slide2.png" alt="Second slide"></mdb-carousel-item>
+    <mdb-carousel-item><img class="d-block w-100" src="./assets/img/slide3.png" alt="Third slide"></mdb-carousel-item>
+    <mdb-carousel-item><img class="d-block w-100" src="./assets/img/slide4.png" alt="Third slide"></mdb-carousel-item>
+  </mdb-carousel>
+  <p></p>
+      <span class="text-center"><app-search-store></app-search-store></span>
+      <h1 class="text-center"> OR </h1>
+
+  <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'" [animation]="'slide'">
+    <mdb-carousel-item *ngFor="let item of slides; let i = index">
+      <div class="col-md-4 pb-2" *ngFor="let card of item; let cardIndex = index">
+        <mdb-card class="my-1 h-100">
+          <mdb-card-img [src]="card.img" alt="Card image cap"></mdb-card-img>
+          <mdb-card-body>
+            <mdb-card-title>
+              <h4>{{card.title}}</h4>
+            </mdb-card-title>
+            <p>{{card.description}}</p>
+          </mdb-card-body>
+          <mdb-card-footer>
+            <a (click)="setCategory(card.title)" mdbBtn color="green" class="waves-light"  mdbWavesEffect>{{card.buttonText}}</a>
+          </mdb-card-footer>
+        </mdb-card>
+      </div>
+    </mdb-carousel-item>
+  </mdb-carousel>
+</div>
+
+<div class="text-center">
+    <!--Displays users chosen category-->
+    <div class="chip" *ngIf="category">{{category}}</div>
+    <!--Reuse the code and set the sorting criteria depending on what is desired by the user. -->
+    <button mdbBtn type="button" color="default" outline="true" mdbWavesEffect
+            (click)="setSortKey('price')">Price</button>
+    <button button mdbBtn type="button" color="default" outline="true" mdbWavesEffect
+            (click)="setSortKey('rating')">Rating</button>
+    <button button mdbBtn type="button" color="default" outline="true" mdbWavesEffect
+            (click)="setSortKey('product_description')">Product Name</button>
+    <!--Calls the child (app-products) component, sends the 'category' and 'sortKey' variables as
+    @Input from the current component (parent) to 'app-product' (child). -->
+    <!--Receives from 'app-product' (child) the 'cartCountEmmitter' upon which the updateCartCount
+    (in parent) method is invoked with a parameter of
+    $event (contains the count of cart items) that is received from the child component.-->
+    <app-products *ngIf="category" [category]="category" [sortKey]="sortKey"
+                  (cartCountEmitter)="updateCartCount($event)"></app-products>
+</div>
+
+

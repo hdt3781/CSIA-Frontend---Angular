@@ -1,0 +1,64 @@
+
+<hr />
+<div class="container">
+  <div class="center">
+    <a mdbBtn class="waves-light green lighten-1" mdbWavesEffect routerLink="/shophome">
+      <i style="color: white" class="fas fa-shopping-cart"></i>
+      <p style="color: white">Back to Shop</p></a>
+  </div>
+</div>
+<div class="text-center">
+  <h1 class="mb-0">Our featured Products</h1>
+  <p class="mb-3">Find some of the freshest produce and shop from our finest choice of unique and organic goods
+    below.</p>
+</div>
+
+<div class="gallery-grid" >
+
+  <div *ngFor="let product of filteredProducts" >
+    <mdb-card cascade="true" narrower="true" class="card-ecommerce">
+      <img src="{{ product['image_url'] }}" alt="Product photo">
+      <div cascade="true" class="text-center">
+        <mdb-card-title>
+          <h4>
+            <strong>
+              <a class="text-capitalize">{{product["product_description"]}}</a>
+            </strong>
+          </h4>
+        </mdb-card-title>
+        <a>
+          <h5 style="justify-content: space-between"><strong>${{product["price"]}} Stock: {{product["stock"]}}</strong></h5>
+        </a>
+        <ul class="rating float-center">
+        <span *ngFor="let x of maxRating; let i = index">
+            <span *ngIf="product['rating'] > i">
+              <mdb-icon fas icon="star" style="color: gold"></mdb-icon>
+            </span>
+          <span *ngIf="product['rating'] < i">
+              <mdb-icon fas icon="star" style="color: gray"></mdb-icon>
+            </span>
+        </span>
+        </ul>
+        <!--Card footer-->
+        <span class="float-center font-weight-bold">
+              <mdb-card-text> Available Units: {{product["stock"]}}</mdb-card-text>
+            </span>
+        <div style="padding-bottom: 1em">
+          <a data-toggle="tooltip" data-placement="top" title="Add to Cart">
+            <mdb-icon (click)="updateCart(product, 1)" fas icon="shopping-cart" class="grey-text ml-3"></mdb-icon>
+          </a>
+          <a data-toggle="tooltip" data-placement="top" title="Share">
+            <mdb-icon fas icon="share-alt" class="grey-text ml-3"></mdb-icon>
+          </a>
+          <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist">
+            <mdb-icon fas icon="heart" class="ml-3"></mdb-icon>
+          </a>
+        </div>
+      </div>
+    </mdb-card>
+  </div>
+</div>
+
+<ng-template #empty> No Products Yet </ng-template>
+
+<!--<a mdbBtn color="info" class="waves-light"  mdbWavesEffect></a>-->

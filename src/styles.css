@@ -1,0 +1,147 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: transparent;
+}
+
+.container1 {
+    display: grid;
+    grid-template-columns: 200px 1fr 300px;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 12px;
+    grid-template-areas:
+    "header header header"
+    "nav content side"
+    "footer footer footer";
+    height: 100vh;
+  }
+
+app-header {
+    color: white;
+    font-size: 14px;
+    grid-area: header;
+    text-align: center;
+    background-color: transparent;
+  }
+
+  app-nav {
+    grid-area: nav;
+    margin-left: 0.6rem;
+    background-color: transparent;
+  }
+
+  app-privacy-policy,
+  app-main {
+    grid-area: content;
+    background-color: transparent;
+    padding: 5px;
+  }
+
+
+  app-aside {
+    grid-area: side;
+    margin-right: 0.6rem;
+    background-color: transparent;
+  }
+
+  app-footer {
+    grid-area: footer;
+    background-color:transparent;
+    color: white;
+    text-align: center;
+  }
+
+  ul li {
+    color: white;
+  }
+  ul li a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+/* First the Grid */
+.gallery-grid {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 0.5rem;
+  justify-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* The Picture Frame */
+.gallery-frame {
+  padding: .2rem;
+  font-size: 1.2rem;
+  text-align: center;
+//background-color: #333;
+//color: #d9d9d9;
+}
+
+/* The Images */
+.gallery-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.gallery-img:hover {
+  opacity: .7;
+}
+.card{
+  width: 20em;
+  border-radius: 2em;
+  height:95%;
+  padding-top: .5em;
+  padding-left: 3em;
+  padding-right: 3em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.card-body{
+  width: 20em;
+  height:100% ;
+  padding-top: .5em;
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-bottom: .1em;
+
+}
+.card.card-cascade.wider .view.view-cascade {
+  z-index: 2;
+  border-radius: 3em;
+}
+
+.two-line-prouct-name-max {
+  font-size:1.2em;
+  font-weight: 200;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+}
+
+@media (max-width: 991px) {
+    app-nav,
+    app-aside {
+      margin: 0;
+    }
+
+    .container1 {
+      grid-template-columns: 2fr;
+      grid-template-areas:
+        "header"
+        "nav"
+        "content"
+        "side"
+        "column"
+        "footer";
+      grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;    }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

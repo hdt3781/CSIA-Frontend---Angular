@@ -1,0 +1,30 @@
+<div>
+<!--  Creating a "search" icon-->
+  <mdb-icon fas icon="search"></mdb-icon>
+  <mat-form-field>
+<!--    Setting the users input as parameters for Angular's formControl and Autocomplete directive. -->
+  <input matInput placeholder="Search for a product or store..." aria-label="State" [matAutocomplete]="auto1"
+         [formControl]="searchCtrlProducts">
+  <mat-autocomplete #auto1="matAutocomplete">
+    <ng-container>
+<!--      Loop through the filtered products (filtered based on the product descirption) array-->
+      <mat-option *ngFor="let product of products" [value]="product.product_description">
+<!--        Display the product name in the dropdown-->
+        <span><b>{{product.product_name}}</b></span>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>
+</mat-form-field>
+<!--  If the user inputs a value into the search form of the shop page, the following procedures take place.-->
+  <div *ngIf="searchCtrlProducts">
+<!--    The shop component accesses the searched-store component, retrieving the stores array, if there are any
+elements in that array (signified by the boolean variable toggleChildElement being set to "true".-->
+<app-searched-store [stores] = 'stores' *ngIf="toggleChildElement"></app-searched-store>
+<!--    Separation by a line.-->
+<hr />
+<!--    The shop component accesses the searched-product component, retrieving the products array, if there
+are any elements in that array (signified by the boolean variable toggleChildElement being set to "true".-->
+<app-searched-product [products] = 'products' *ngIf="toggleChildElement"></app-searched-product>
+  </div>
+</div>
+
